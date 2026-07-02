@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oxenté | Distribuidora de Carnes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --vermelho: #a82116;
+  --vermelho-escuro: #4b0d08;
+  --vinho: #230806;
+  --dourado: #f2b84b;
+  --creme: #fff4e6;
+  --fundo: #fff8ef;
+  --texto: #241312;
+  --cinza: #756360;
+  --branco: #ffffff;
+  --borda: #efd8c1;
+  --sombra: 0 24px 70px rgba(75, 13, 8, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(242, 184, 75, .28), transparent 35%),
+    linear-gradient(180deg, #fffaf3 0%, var(--fundo) 55%, #fff 100%);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.topo {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(239, 216, 193, .8);
+  position: sticky; top: 0; z-index: 20;
+}
+.navbar {
+  max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px;
+}
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--vermelho); font-size: 1.2rem; font-weight: 900; }
+.logo-icone { background: var(--vermelho); color: #fff; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 14px; box-shadow: 0 10px 25px rgba(168, 33, 22, .25); }
+.logo em { color: var(--dourado); font-style: normal; margin-left: 2px; }
+.menu { display: flex; gap: 26px; list-style: none; }
+.menu a { text-decoration: none; color: var(--texto); font-weight: 800; font-size: .94rem; }
+.menu a:hover { color: var(--vermelho); }
+.btn-nav { background: var(--vinho); color: #fff; text-decoration: none; padding: 11px 16px; border-radius: 999px; font-weight: 900; font-size: .9rem; }
+
+.hero { max-width: 1200px; margin: auto; padding: 78px 20px 40px; display: grid; grid-template-columns: 1.35fr .75fr; gap: 36px; align-items: center; }
+.tag, .titulo-secao p { color: var(--vermelho); font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; font-size: .78rem; }
+.hero h1 { font-size: clamp(2.4rem, 6vw, 5.25rem); line-height: .98; margin: 14px 0 20px; letter-spacing: -3px; max-width: 880px; }
+.descricao { color: var(--cinza); max-width: 720px; font-size: 1.12rem; }
+.botoes { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+.btn { border: none; border-radius: 16px; padding: 15px 22px; font-weight: 900; cursor: pointer; text-decoration: none; display: inline-block; transition: .2s ease; font-size: .95rem; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(75,13,8,.14); }
+.primario { background: linear-gradient(135deg, var(--vermelho), var(--vermelho-escuro)); color: var(--branco); }
+.secundario { background: var(--branco); color: var(--vermelho); border: 1px solid var(--borda); }
+.cheio { width: 100%; }
+.metricas { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+.metricas span { background: rgba(255,255,255,.78); border: 1px solid var(--borda); padding: 10px 14px; border-radius: 16px; color: var(--cinza); font-size: .9rem; }
+.metricas strong { color: var(--vermelho); display: block; font-size: 1.1rem; }
+
+.hero-card, .beneficios article, .produto, .formulario, .carrinho, .sobre { background: rgba(255,255,255,.92); border: 1px solid var(--borda); border-radius: 28px; box-shadow: var(--sombra); }
+.hero-card { padding: 30px; position: relative; overflow: hidden; }
+.hero-card::before { content: ""; position: absolute; inset: -80px -90px auto auto; width: 180px; height: 180px; background: var(--dourado); border-radius: 50%; opacity: .35; }
+.selo { display: inline-block; background: #fff0d1; color: var(--vermelho); padding: 8px 12px; border-radius: 999px; font-weight: 900; font-size: .8rem; margin-bottom: 18px; }
+.hero-card h3 { font-size: 1.55rem; color: var(--vinho); line-height: 1.15; }
+.hero-card p, .hero-card li { color: var(--cinza); }
+.hero-card p { margin: 14px 0; }
+.hero-card ul { padding-left: 20px; }
+
+.beneficios { max-width: 1200px; margin: 0 auto 35px; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.beneficios article { padding: 24px; box-shadow: 0 16px 44px rgba(75,13,8,.08); }
+.beneficios span { color: var(--dourado); font-weight: 900; }
+.beneficios h3 { color: var(--vermelho); margin: 6px 0; }
+.beneficios p, .produto p, .sobre p, .formulario label { color: var(--cinza); }
+
+.secao { max-width: 1200px; margin: auto; padding: 58px 20px; }
+.catalogo-destaque { background: rgba(255,255,255,.42); border-radius: 36px; }
+.titulo-secao { margin-bottom: 24px; }
+.titulo-secao.linha { display: flex; justify-content: space-between; align-items: end; gap: 18px; }
+.titulo-secao h2 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.05; letter-spacing: -1.5px; max-width: 760px; }
+.link-pedido { color: var(--vermelho); font-weight: 900; text-decoration: none; white-space: nowrap; }
+.filtros { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+.filtro { border: 1px solid var(--borda); background: var(--branco); color: var(--texto); padding: 11px 17px; border-radius: 999px; cursor: pointer; font-weight: 900; }
+.filtro.ativo, .filtro:hover { background: var(--vermelho); color: var(--branco); }
+.grid-produtos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.produto { overflow: hidden; transition: .2s ease; box-shadow: 0 18px 48px rgba(75,13,8,.09); }
+.produto:hover { transform: translateY(-5px); box-shadow: var(--sombra); }
+.produto-img { height: 190px; background: linear-gradient(135deg, #4b0d08 0%, #a82116 55%, #f2b84b 100%); display: flex; align-items: center; justify-content: center; color: var(--branco); font-size: 4rem; position: relative; }
+.produto-img::after { content: "Oxenté Carnes"; position: absolute; left: 16px; bottom: 16px; background: rgba(255,255,255,.92); color: var(--vermelho); border-radius: 999px; padding: 6px 10px; font-size: .75rem; font-weight: 900; }
+.produto-info { padding: 20px; }
+.produto-info h3 { font-size: 1.25rem; color: var(--vinho); }
+.produto-info p { margin: 8px 0 10px; font-size: .94rem; }
+.preco { display: inline-flex; color: var(--vermelho); font-size: 1.2rem; font-weight: 900; background: #fff2de; padding: 6px 10px; border-radius: 12px; }
+.qtd-area { display: flex; gap: 8px; margin-top: 16px; }
+.qtd-area input { width: 100%; padding: 13px; border-radius: 14px; border: 1px solid var(--borda); font-weight: 800; }
+.qtd-area button { white-space: nowrap; padding: 13px 16px; }
+
+.pedido-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; align-items: start; }
+.formulario, .carrinho { padding: 28px; }
+.formulario label { display: block; font-weight: 800; margin-bottom: 16px; }
+.formulario input, .formulario textarea { width: 100%; padding: 14px; border: 1px solid var(--borda); border-radius: 14px; margin-top: 7px; font: inherit; background: #fffdf9; outline-color: var(--dourado); }
+.duas-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.carrinho { position: sticky; top: 90px; }
+.carrinho-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.carrinho h3 { color: var(--vinho); }
+.carrinho-topo span { background: #fff2de; color: var(--vermelho); padding: 7px 10px; border-radius: 999px; font-weight: 900; font-size: .82rem; }
+.item-carrinho { border-bottom: 1px solid var(--borda); padding: 13px 0; display: flex; justify-content: space-between; gap: 10px; }
+.item-carrinho button { background: transparent; color: var(--vermelho); border: none; cursor: pointer; font-weight: 900; }
+.vazio { color: var(--cinza); }
+.total { margin-top: 20px; border-top: 2px solid var(--borda); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; }
+.total strong { color: var(--vermelho); font-size: 1.45rem; }
+.aviso { display: block; color: var(--cinza); margin-top: 14px; }
+
+.fora-catalogo { background: linear-gradient(135deg, rgba(75,13,8,.96), rgba(168,33,22,.94)); color: var(--branco); border-radius: 36px; overflow: hidden; position: relative; }
+.fora-catalogo::before { content: ""; position: absolute; width: 280px; height: 280px; border-radius: 50%; background: rgba(242,184,75,.25); right: -80px; top: -80px; }
+.fora-grid { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: center; }
+.fora-texto .tag { color: var(--dourado); }
+.fora-texto h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.05; letter-spacing: -1.4px; margin: 10px 0 16px; }
+.fora-texto p { color: #ffe7d0; }
+.form-fora { background: rgba(255,255,255,.96); color: var(--texto); border-radius: 28px; padding: 26px; box-shadow: var(--sombra); }
+.form-fora label { display: block; color: var(--cinza); font-weight: 800; margin-bottom: 14px; }
+.form-fora input, .form-fora textarea { width: 100%; padding: 14px; border: 1px solid var(--borda); border-radius: 14px; margin-top: 7px; font: inherit; background: #fffdf9; outline-color: var(--dourado); }
+.sugestoes-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.sugestoes-tags span { border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.12); color: #fff7eb; padding: 8px 10px; border-radius: 999px; font-size: .84rem; font-weight: 800; }
+
+.sobre { max-width: 1200px; margin: 40px auto 70px; padding: 36px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; }
+.sobre h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.08; }
+footer { background: var(--vinho); color: var(--branco); text-align: center; padding: 24px; }
+
+@media (max-width: 930px) {
+  .hero, .beneficios, .grid-produtos, .pedido-layout, .sobre, .fora-grid { grid-template-columns: 1fr; }
+  .menu, .btn-nav { display: none; }
+  .carrinho { position: static; }
+  .titulo-secao.linha { align-items: start; flex-direction: column; }
+}
+@media (max-width: 560px) {
+  .duas-colunas { grid-template-columns: 1fr; }
+  .hero { padding-top: 48px; }
+  .hero h1 { letter-spacing: -1.5px; }
+  .qtd-area { flex-direction: column; }
+}
+
+
+/* Melhorias visuais sem alterar a estrutura da página */
+.hero {
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 3%;
+  top: 34px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(242,184,75,.35), transparent 68%);
+  pointer-events: none;
+}
+.hero-card {
+  background:
+    linear-gradient(rgba(255,255,255,.90), rgba(255,255,255,.94)),
+    radial-gradient(circle at 25% 15%, rgba(242,184,75,.38), transparent 34%),
+    linear-gradient(135deg, rgba(168,33,22,.16), rgba(75,13,8,.04));
+}
+.hero-card::after {
+  content: "🥩";
+  position: absolute;
+  right: 18px;
+  bottom: -8px;
+  font-size: 7rem;
+  opacity: .14;
+  transform: rotate(-12deg);
+}
+.logo-icone {
+  background: linear-gradient(135deg, var(--vermelho), var(--vinho));
+}
+.btn-whatsapp,
+.whatsapp-flutuante {
+  background: #25D366 !important;
+  color: #fff !important;
+  border: none !important;
+}
+.btn-whatsapp:hover,
+.whatsapp-flutuante:hover {
+  filter: brightness(.96);
+}
+.hero-carnes {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(80px, 1fr));
+  gap: 10px;
+  max-width: 560px;
+}
+.mini-carne {
+  min-height: 78px;
+  border-radius: 20px;
+  padding: 12px;
+  background: linear-gradient(145deg, #fff, #fff1df);
+  border: 1px solid var(--borda);
+  box-shadow: 0 12px 26px rgba(75,13,8,.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  color: var(--vinho);
+}
+.mini-carne span { font-size: 2rem; }
+.produto-img {
+  height: 210px;
+  isolation: isolate;
+  background-size: cover;
+  background-position: center;
+}
+.produto-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(35,8,6,.10), rgba(35,8,6,.58)),
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), transparent 30%);
+  z-index: -1;
+}
+.produto-img .carne-arte {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.produto-img .carne-arte svg {
+  width: 112%;
+  height: 112%;
+  filter: drop-shadow(0 18px 28px rgba(35,8,6,.25));
+}
+.produto-img .emoji-produto {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 12px 24px rgba(35,8,6,.18);
+  font-size: 2rem;
+}
+.produto-img .categoria-produto {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  color: #fff;
+  background: rgba(35,8,6,.55);
+  backdrop-filter: blur(8px);
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: .72rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: .6px;
+}
+.produto-img::after {
+  content: "Oxenté Carnes";
+  left: 16px;
+  bottom: 16px;
+  background: rgba(255,255,255,.94);
+  color: var(--vermelho);
+}
+.produto-info {
+  background: linear-gradient(180deg, #fff 0%, #fffaf4 100%);
+}
+.produto-info h3::before {
+  content: "•";
+  color: var(--dourado);
+  margin-right: 8px;
+}
+.produto:hover .produto-img .carne-arte svg {
+  transform: scale(1.04) rotate(-1deg);
+  transition: .25s ease;
+}
+.whatsapp-flutuante {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 900;
+  box-shadow: 0 16px 38px rgba(37,211,102,.34);
+}
+.whatsapp-flutuante span {
+  font-size: 1.35rem;
+}
+@media (max-width: 700px) {
+  .hero-carnes { grid-template-columns: repeat(2, 1fr); }
+  .whatsapp-flutuante { right: 14px; bottom: 14px; padding: 13px 15px; }
+  .whatsapp-flutuante small { display: none; }
+}
+
+
+
+/* ===== Refinamento profissional solicitado ===== */
+body {
+  background:
+    radial-gradient(circle at 8% 2%, rgba(242,184,75,.24), transparent 28%),
+    radial-gradient(circle at 92% 8%, rgba(168,33,22,.12), transparent 26%),
+    linear-gradient(180deg, #fffaf2 0%, #fff6eb 42%, #ffffff 100%);
+}
+.topo {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(255, 252, 247, .92);
+  box-shadow: 0 12px 38px rgba(35,8,6,.08);
+}
+body { padding-top: 76px; }
+.navbar { padding: 13px 22px; }
+.logo strong { letter-spacing: -.5px; }
+.logo em { background: #fff0d1; padding: 4px 8px; border-radius: 999px; }
+.menu {
+  background: rgba(255,255,255,.72);
+  border: 1px solid var(--borda);
+  padding: 8px;
+  border-radius: 999px;
+  gap: 4px;
+}
+.menu a {
+  display: inline-flex;
+  padding: 9px 13px;
+  border-radius: 999px;
+  transition: .2s ease;
+}
+.menu a:hover {
+  background: #fff0d1;
+  color: var(--vermelho);
+}
+.btn-nav {
+  background: linear-gradient(135deg, var(--vermelho), var(--vinho));
+  box-shadow: 0 12px 28px rgba(168,33,22,.22);
+}
+.hero {
+  padding-top: 76px;
+  min-height: calc(100vh - 80px);
+}
+.hero h1 {
+  max-width: 940px;
+  text-wrap: balance;
+}
+.hero-card,
+.produto,
+.formulario,
+.carrinho,
+.sobre,
+.beneficios article,
+.form-fora {
+  box-shadow: 0 20px 55px rgba(72,20,13,.10);
+}
+.hero-card {
+  border: 1px solid rgba(242,184,75,.45);
+}
+.hero-card h3 { font-size: 1.75rem; }
+.beneficios article,
+.produto,
+.formulario,
+.carrinho,
+.sobre,
+.form-fora {
+  transition: .22s ease;
+}
+.beneficios article:hover,
+.formulario:hover,
+.carrinho:hover,
+.sobre:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 68px rgba(72,20,13,.13);
+}
+.catalogo-destaque {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,246,235,.88));
+  border: 1px solid rgba(239,216,193,.85);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+}
+.produto {
+  border-radius: 30px;
+  border: 1px solid rgba(239,216,193,.95);
+}
+.produto-img {
+  height: 235px;
+}
+.produto-info h3 {
+  font-size: 1.32rem;
+  letter-spacing: -.3px;
+}
+.preco {
+  border: 1px solid rgba(242,184,75,.45);
+}
+.qtd-area input,
+.formulario input,
+.formulario textarea,
+.form-fora input,
+.form-fora textarea {
+  border: 1px solid rgba(184,132,93,.34);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+}
+.qtd-area input:focus,
+.formulario input:focus,
+.formulario textarea:focus,
+.form-fora input:focus,
+.form-fora textarea:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 4px rgba(242,184,75,.16);
+}
+.btn-whatsapp { display: none !important; }
+.suporte-flutuante {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(135deg, var(--vinho), var(--vermelho));
+  box-shadow: 0 18px 42px rgba(75,13,8,.32);
+  border: 1px solid rgba(255,255,255,.16);
+}
+.suporte-flutuante:hover { transform: translateY(-2px); }
+.suporte-flutuante span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.16);
+  border-radius: 50%;
+  font-size: 1.1rem;
+}
+.suporte {
+  max-width: 1200px;
+  margin: 0 auto 70px;
+  padding: 0 20px;
+}
+.suporte-card {
+  border-radius: 34px;
+  padding: 34px;
+  background: linear-gradient(135deg, #fff, #fff4e4);
+  border: 1px solid var(--borda);
+  box-shadow: 0 24px 68px rgba(72,20,13,.11);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 22px;
+}
+.suporte-card h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin: 6px 0 10px;
+}
+.suporte-card p { color: var(--cinza); max-width: 760px; }
+.suporte-acoes { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 930px) {
+  body { padding-top: 70px; }
+  .topo { position: sticky; }
+  .navbar { align-items: flex-start; gap: 10px; }
+  .menu {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    order: 3;
+    border-radius: 18px;
+    justify-content: flex-start;
+  }
+  .navbar { flex-wrap: wrap; }
+  .btn-nav { display: inline-flex; }
+  .hero { padding-top: 40px; min-height: auto; }
+  .suporte-card { grid-template-columns: 1fr; }
+  .suporte-acoes { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .suporte-flutuante { right: 14px; bottom: 14px; padding: 12px 14px; }
+  .suporte-flutuante small { display: none; }
+  .produto-img { height: 205px; }
+}
+
+
+/* ===== Ajustes finais de responsividade e dimensionamento ===== */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body, button, input, textarea, a, p, h1, h2, h3, strong, span, small {
+  overflow-wrap: anywhere;
+}
+img, svg { max-width: 100%; }
+section[id] { scroll-margin-top: 108px; }
+.navbar, .hero, .secao, .beneficios, .sobre, .suporte {
+  width: min(1200px, 100%);
+}
+.logo, .menu a, .btn-nav, .btn, .preco, .carrinho-topo span {
+  white-space: normal;
+}
+.menu a, .btn-nav {
+  white-space: nowrap;
+}
+.logo { min-width: 0; }
+.logo strong, .logo em { min-width: 0; }
+.hero {
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+}
+.hero-texto, .hero-card, .produto-info, .formulario, .carrinho, .form-fora, .sobre, .suporte-card {
+  min-width: 0;
+}
+.hero h1 {
+  font-size: clamp(2.15rem, 5.4vw, 4.7rem);
+  letter-spacing: clamp(-2.6px, -0.35vw, -1px);
+}
+.descricao { font-size: clamp(1rem, 1.8vw, 1.12rem); }
+.grid-produtos {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.produto-info h3 {
+  line-height: 1.18;
+}
+.produto-info p {
+  min-height: 3.2em;
+}
+.qtd-area {
+  align-items: stretch;
+}
+.qtd-area input {
+  min-width: 0;
+}
+.qtd-area button {
+  flex: 0 0 auto;
+}
+.item-carrinho {
+  align-items: flex-start;
+}
+.item-carrinho > div { min-width: 0; }
+
+@media (max-width: 1050px) {
+  .navbar { gap: 12px; }
+  .menu { gap: 2px; }
+  .menu a { padding: 8px 10px; font-size: .88rem; }
+  .btn-nav { padding: 10px 13px; font-size: .84rem; }
+  .hero { grid-template-columns: 1fr; padding-top: 48px; }
+}
+
+@media (max-width: 930px) {
+  body { padding-top: 0; }
+  .topo { position: sticky; }
+  section[id] { scroll-margin-top: 142px; }
+  .navbar { padding: 10px 14px; align-items: center; }
+  .logo { font-size: 1rem; }
+  .logo-icone { width: 34px; height: 34px; border-radius: 12px; flex: 0 0 auto; }
+  .logo em { padding: 3px 7px; }
+  .btn-nav { margin-left: auto; }
+  .menu {
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px;
+  }
+  .menu li { flex: 0 0 auto; }
+  .hero, .secao { padding-left: 16px; padding-right: 16px; }
+  .beneficios { padding-left: 16px; padding-right: 16px; }
+  .catalogo-destaque, .fora-catalogo { border-radius: 24px; }
+  .grid-produtos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .produto-img { height: 200px; }
+  .formulario, .carrinho, .form-fora, .sobre, .suporte-card { padding: 22px; border-radius: 24px; }
+}
+
+@media (max-width: 680px) {
+  .navbar { align-items: flex-start; }
+  .btn-nav {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    order: 2;
+  }
+  .menu { order: 3; }
+  .hero { padding-top: 34px; padding-bottom: 26px; }
+  .hero h1 { font-size: clamp(2rem, 10vw, 3rem); line-height: 1.02; }
+  .metricas { display: grid; grid-template-columns: 1fr; }
+  .hero-carnes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mini-carne { min-height: 64px; border-radius: 16px; font-size: .92rem; }
+  .hero-card { padding: 22px; border-radius: 24px; }
+  .beneficios { grid-template-columns: 1fr; }
+  .grid-produtos { grid-template-columns: 1fr; }
+  .produto-info p { min-height: auto; }
+  .filtros { gap: 8px; }
+  .filtro { padding: 9px 12px; font-size: .86rem; }
+  .titulo-secao h2, .fora-texto h2 { letter-spacing: -.8px; }
+  .link-pedido { white-space: normal; }
+  .suporte-card { padding: 22px; }
+  .suporte-acoes .btn { width: 100%; text-align: center; }
+}
+
+@media (max-width: 420px) {
+  .navbar { padding-left: 10px; padding-right: 10px; }
+  .logo { gap: 6px; font-size: .95rem; }
+  .logo em { display: none; }
+  .menu a { font-size: .82rem; padding: 8px 9px; }
+  .hero, .secao, .beneficios, .suporte { padding-left: 12px; padding-right: 12px; }
+  .hero-carnes { grid-template-columns: 1fr; }
+  .produto-img { height: 178px; }
+  .produto-img .emoji-produto { width: 46px; height: 46px; font-size: 1.65rem; }
+  .produto-img::after, .produto-img .categoria-produto { font-size: .65rem; }
+  .qtd-area { flex-direction: column; }
+  .qtd-area button, .btn { width: 100%; text-align: center; }
+  .formulario, .carrinho, .form-fora, .sobre, .suporte-card { padding: 18px; }
+  .suporte-flutuante { padding: 11px; border-radius: 50%; }
+}
+
+</style>
+</head>
+<body>
+  <header class="topo">
+    <nav class="navbar">
+      <a class="logo" href="#inicio" aria-label="Oxenté Distribuidora">
+        <span class="logo-icone">🥩</span>
+        <strong>Oxenté</strong><em>Distribuidora</em>
+      </a>
+      <ul class="menu">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#produtos">Catálogo</a></li>
+        <li><a href="#pedido">Pedido</a></li>
+        <li><a href="#fora-catalogo">Fora do catálogo</a></li>
+        <li><a href="#suporte">Suporte</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+      <a class="btn-nav" href="#pedido">Solicitar cotação</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-texto">
+        <p class="tag">Distribuição de carnes para empresas</p>
+        <h1>Carnes de qualidade para restaurantes, churrascarias e empresas, com pedidos mais rápidos e organizados.</h1>
+        <p class="descricao">
+          A Oxenté facilita o abastecimento do seu negócio: consulte cortes disponíveis, monte seu pedido e envie sua solicitação direto para o fornecedor pelo WhatsApp.
+        </p>
+        <div class="metricas">
+          <span><strong>+20</strong> cortes disponíveis</span>
+          <span><strong>B2B</strong> atendimento comercial</span>
+          <span><strong>24h</strong> pedido organizado</span>
+        </div>
+        <div class="hero-carnes" aria-label="Carnes em destaque">
+          <div class="mini-carne"><span>🥩</span> Bovinos</div>
+          <div class="mini-carne"><span>🍖</span> Suínos</div>
+          <div class="mini-carne"><span>🍗</span> Frango</div>
+          <div class="mini-carne"><span>🥓</span> Embutidos</div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="selo">Pedido rápido</div>
+        <h3>Cotação pronta para WhatsApp</h3>
+        <p>O cliente escolhe os produtos, informa a quantidade em kg e envia tudo em uma mensagem estruturada.</p>
+        <ul>
+          <li>Menos pedidos incompletos</li>
+          <li>Entrega programada</li>
+          <li>Resumo automático do valor</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="beneficios" aria-label="Benefícios">
+      <article>
+        <span>01</span>
+        <h3>Catálogo visível</h3>
+        <p>Os cortes aparecem direto no site, com filtros por categoria e preço por kg.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Pedido padronizado</h3>
+        <p>Produto, quantidade, entrega e observações chegam organizados ao fornecedor.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Atendimento comercial</h3>
+        <p>Ideal para restaurantes, churrascarias, bares, mercados e cozinhas industriais.</p>
+      </article>
+    </section>
+
+    <section id="produtos" class="secao catalogo-destaque">
+      <div class="titulo-secao linha">
+        <div>
+          <p>Catálogo de carnes</p>
+          <h2>Escolha os cortes para o seu estabelecimento</h2>
+        </div>
+        <a href="#pedido" class="link-pedido">Ver resumo do pedido →</a>
+      </div>
+
+      <div class="filtros">
+        <button class="filtro ativo" data-categoria="todos">Todos</button>
+        <button class="filtro" data-categoria="bovino">Bovinos</button>
+        <button class="filtro" data-categoria="suino">Suínos</button>
+        <button class="filtro" data-categoria="frango">Frango</button>
+        <button class="filtro" data-categoria="embutido">Embutidos</button>
+      </div>
+
+      <div class="grid-produtos" id="listaProdutos"></div>
+    </section>
+
+    <section id="pedido" class="secao pedido-area">
+      <div class="titulo-secao">
+        <p>Solicitação comercial</p>
+        <h2>Monte seu pedido</h2>
+      </div>
+
+      <div class="pedido-layout">
+        <form id="formPedido" class="formulario">
+          <label>Nome do estabelecimento<input type="text" id="empresa" placeholder="Ex: Churrascaria Bom Sabor" required /></label>
+          <label>Nome do responsável<input type="text" id="responsavel" placeholder="Ex: Manoel Alves" required /></label>
+          <label>Telefone para contato<input type="tel" id="telefone" placeholder="(83) 99999-9999" required /></label>
+          <div class="duas-colunas">
+            <label>Data desejada<input type="date" id="dataEntrega" required /></label>
+            <label>Horário desejado<input type="time" id="horaEntrega" required /></label>
+          </div>
+          <label>Endereço de entrega<input type="text" id="endereco" placeholder="Rua, número, bairro e cidade" required /></label>
+          <label>Observações<textarea id="observacoes" rows="4" placeholder="Ex: carne limpa, cortes embalados separadamente, entregar pela manhã..."></textarea></label>
+          <button type="submit" class="btn primario cheio">Enviar pedido pelo WhatsApp</button>
+        </form>
+
+        <aside class="carrinho">
+          <div class="carrinho-topo">
+            <h3>Resumo do pedido</h3>
+            <span id="contadorItens">0 itens</span>
+          </div>
+          <div id="itensCarrinho" class="itens-carrinho"><p class="vazio">Nenhum produto adicionado ainda.</p></div>
+          <div class="total"><span>Total estimado</span><strong id="totalPedido">R$ 0,00</strong></div>
+          <small class="aviso">*Valores demonstrativos. O fornecedor pode confirmar preço, estoque e frete.</small>
+        </aside>
+      </div>
+    </section>
+
+
+    <section id="fora-catalogo" class="secao fora-catalogo">
+      <div class="fora-grid">
+        <div class="fora-texto">
+          <p class="tag">Não encontrou o corte?</p>
+          <h2>Solicite produtos fora do catálogo</h2>
+          <p>O cliente pode informar cortes, marcas, tipos de embalagem ou quantidades especiais que não aparecem no catálogo. Assim, a Oxenté verifica a possibilidade de fornecer posteriormente e retorna com a disponibilidade.</p>
+          <div class="sugestoes-tags">
+            <span>Cortes especiais</span>
+            <span>Peças sob encomenda</span>
+            <span>Marcas específicas</span>
+            <span>Pedido recorrente</span>
+          </div>
+        </div>
+
+        <form id="formForaCatalogo" class="form-fora">
+          <label>Nome do estabelecimento<input type="text" id="foraEmpresa" placeholder="Ex: Restaurante Sabor da Brasa" required /></label>
+          <label>Responsável<input type="text" id="foraResponsavel" placeholder="Nome de quem está solicitando" required /></label>
+          <label>Telefone para retorno<input type="tel" id="foraTelefone" placeholder="(83) 99999-9999" required /></label>
+          <label>O que você precisa?<textarea id="foraMensagem" rows="5" placeholder="Ex: preciso de cupim, fraldinha, cortes maturados, peça inteira, embalagem a vácuo ou fornecimento semanal..." required></textarea></label>
+          <button type="submit" class="btn primario cheio">Consultar disponibilidade pelo WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="sobre" class="sobre">
+      <div>
+        <p class="tag">Sobre a plataforma</p>
+        <h2>Uma ponte direta entre fornecedor e cliente.</h2>
+      </div>
+      <p>
+        O site organiza o processo de compra de carnes para empresas, evitando pedidos espalhados em ligações e mensagens soltas. Com catálogo, carrinho e envio pelo WhatsApp, o cliente faz a solicitação de forma clara e o fornecedor recebe tudo pronto para confirmar.
+      </p>
+    </section>
+
+    <section id="suporte" class="suporte">
+      <div class="suporte-card">
+        <div>
+          <p class="tag">Atendimento ao cliente</p>
+          <h2>Precisa de ajuda para montar o pedido?</h2>
+          <p>Use o suporte para tirar dúvidas sobre cortes, disponibilidade, entrega, valores, fornecimento recorrente ou produtos fora do catálogo.</p>
+        </div>
+        <div class="suporte-acoes">
+          <a class="btn primario" href="https://wa.me/5583999999999?text=Olá! Preciso de suporte da Oxenté Distribuidora." target="_blank">Chamar suporte</a>
+          <a class="btn secundario" href="#fora-catalogo">Solicitar item especial</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Oxenté Distribuidora. Delivery comercial de carnes para empresas.</p>
+  </footer>
+
+  <a class="suporte-flutuante" href="#suporte" aria-label="Ir para suporte ao cliente">
+    <span>🎧</span><small>Suporte ao Cliente</small>
+  </a>
+
+  <script>
+const numeroWhatsApp = "5583999999999"; // Troque pelo número do fornecedor com DDI e DDD
+
+const produtos = [
+  { id: 1, nome: "Picanha", categoria: "bovino", preco: 68.90, unidade: "kg", emoji: "🥩", desc: "Corte nobre para churrascarias e restaurantes premium." },
+  { id: 2, nome: "Contrafilé", categoria: "bovino", preco: 42.90, unidade: "kg", emoji: "🥩", desc: "Boa opção para bifes, grelhados e pratos executivos." },
+  { id: 3, nome: "Alcatra", categoria: "bovino", preco: 45.50, unidade: "kg", emoji: "🥩", desc: "Corte versátil para preparo diário e porções." },
+  { id: 4, nome: "Patinho", categoria: "bovino", preco: 36.90, unidade: "kg", emoji: "🥩", desc: "Ideal para moída, cubos, refogados e pratos comerciais." },
+  { id: 5, nome: "Acém", categoria: "bovino", preco: 29.90, unidade: "kg", emoji: "🥩", desc: "Excelente para cozidos, carne de panela e produção em volume." },
+  { id: 6, nome: "Costela Bovina", categoria: "bovino", preco: 32.90, unidade: "kg", emoji: "🍖", desc: "Perfeita para assados, churrasco e preparo lento." },
+  { id: 7, nome: "Costela Suína", categoria: "suino", preco: 28.90, unidade: "kg", emoji: "🍖", desc: "Ótima saída para churrascarias, bares e pratos especiais." },
+  { id: 8, nome: "Lombo Suíno", categoria: "suino", preco: 31.50, unidade: "kg", emoji: "🍖", desc: "Corte limpo e versátil para assados e grelhados." },
+  { id: 9, nome: "Pernil Suíno", categoria: "suino", preco: 24.90, unidade: "kg", emoji: "🍖", desc: "Boa opção para produção em grande quantidade." },
+  { id: 10, nome: "Peito de Frango", categoria: "frango", preco: 18.90, unidade: "kg", emoji: "🍗", desc: "Corte essencial para restaurantes e marmitarias." },
+  { id: 11, nome: "Coxa e Sobrecoxa", categoria: "frango", preco: 14.90, unidade: "kg", emoji: "🍗", desc: "Excelente custo-benefício para cardápios diários." },
+  { id: 12, nome: "Asa de Frango", categoria: "frango", preco: 16.90, unidade: "kg", emoji: "🍗", desc: "Ideal para porções, espetinhos e churrasco." },
+  { id: 13, nome: "Linguiça Toscana", categoria: "embutido", preco: 23.90, unidade: "kg", emoji: "🌭", desc: "Produto de alta saída para churrascarias e eventos." },
+  { id: 14, nome: "Bacon", categoria: "embutido", preco: 34.90, unidade: "kg", emoji: "🥓", desc: "Indicado para hamburguerias, lanches e preparos especiais." },
+  { id: 15, nome: "Calabresa", categoria: "embutido", preco: 22.90, unidade: "kg", emoji: "🌭", desc: "Versátil para pizzas, porções, feijoada e pratos comerciais." }
+];
+
+let carrinho = [];
+const listaProdutos = document.getElementById("listaProdutos");
+const itensCarrinho = document.getElementById("itensCarrinho");
+const totalPedido = document.getElementById("totalPedido");
+const contadorItens = document.getElementById("contadorItens");
+const filtros = document.querySelectorAll(".filtro");
+
+
+function arteCarne(categoria) {
+  const mapas = {
+    bovino: { a: "#8f1d14", b: "#c94332", c: "#f2b84b", forma: "M86,130 C74,86 109,50 164,50 C214,50 266,78 285,122 C305,169 268,215 204,222 C143,229 99,181 86,130 Z" },
+    suino: { a: "#c45a4f", b: "#ef8d7e", c: "#ffd3ba", forma: "M66,143 C74,91 119,61 176,68 C238,75 285,117 279,165 C272,220 206,242 143,220 C88,201 58,178 66,143 Z" },
+    frango: { a: "#d9903d", b: "#f6c36b", c: "#fff0cf", forma: "M125,78 C165,43 232,56 262,102 C291,147 264,201 211,218 C159,234 101,208 83,164 C68,128 91,101 125,78 Z" },
+    embutido: { a: "#9b2a22", b: "#d9523f", c: "#ffd08a", forma: "M56,150 C94,92 182,66 269,86 C292,91 302,116 286,133 C244,177 145,209 77,193 C54,188 43,169 56,150 Z" }
+  };
+  const m = mapas[categoria] || mapas.bovino;
+  return `<div class="carne-arte"><svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração de carne">
+    <defs><linearGradient id="g-${categoria}" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="${m.b}"/><stop offset="1" stop-color="${m.a}"/></linearGradient></defs>
+    <rect width="360" height="280" fill="#3c0b08"/>
+    <circle cx="58" cy="50" r="96" fill="rgba(242,184,75,.28)"/>
+    <circle cx="316" cy="238" r="100" fill="rgba(255,255,255,.10)"/>
+    <path d="${m.forma}" fill="url(#g-${categoria})" stroke="#ffe0bd" stroke-width="7"/>
+    <path d="M130,128 C155,96 216,96 238,134 C253,161 228,190 185,189 C143,188 112,158 130,128 Z" fill="${m.c}" opacity=".88"/>
+    <path d="M95,151 C130,162 166,165 205,154" stroke="#fff5e8" stroke-width="7" stroke-linecap="round" opacity=".42"/>
+    <path d="M154,83 C182,77 218,84 245,106" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".20"/>
+  </svg></div>`;
+}
+
+function nomeCategoria(categoria) {
+  const nomes = { bovino: "Bovino", suino: "Suíno", frango: "Frango", embutido: "Embutido" };
+  return nomes[categoria] || "Carne";
+}
+
+function formatarMoeda(valor) {
+  return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+function renderizarProdutos(categoria = "todos") {
+  listaProdutos.innerHTML = "";
+  const produtosFiltrados = categoria === "todos" ? produtos : produtos.filter(produto => produto.categoria === categoria);
+
+  produtosFiltrados.forEach(produto => {
+    const card = document.createElement("article");
+    card.className = "produto";
+    card.innerHTML = `
+      <div class="produto-img">
+        ${arteCarne(produto.categoria)}
+        <span class="categoria-produto">${nomeCategoria(produto.categoria)}</span>
+        <span class="emoji-produto">${produto.emoji}</span>
+      </div>
+      <div class="produto-info">
+        <h3>${produto.nome}</h3>
+        <p>${produto.desc}</p>
+        <span class="preco">${formatarMoeda(produto.preco)} / ${produto.unidade}</span>
+        <div class="qtd-area">
+          <input type="number" min="1" step="0.5" value="5" id="qtd-${produto.id}" aria-label="Quantidade em kg de ${produto.nome}" />
+          <button class="btn primario" onclick="adicionarCarrinho(${produto.id})">Adicionar</button>
+        </div>
+      </div>`;
+    listaProdutos.appendChild(card);
+  });
+}
+
+function adicionarCarrinho(id) {
+  const produto = produtos.find(item => item.id === id);
+  const inputQtd = document.getElementById(`qtd-${id}`);
+  const quantidade = Number(inputQtd.value);
+  if (!quantidade || quantidade <= 0) { alert("Informe uma quantidade válida."); return; }
+  const itemExistente = carrinho.find(item => item.id === id);
+  if (itemExistente) itemExistente.quantidade += quantidade;
+  else carrinho.push({ ...produto, quantidade });
+  renderizarCarrinho();
+  document.getElementById("pedido").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function removerCarrinho(id) {
+  carrinho = carrinho.filter(item => item.id !== id);
+  renderizarCarrinho();
+}
+
+function renderizarCarrinho() {
+  itensCarrinho.innerHTML = "";
+  const totalItens = carrinho.reduce((soma, item) => soma + item.quantidade, 0);
+  contadorItens.textContent = `${totalItens.toLocaleString("pt-BR")} kg`;
+  if (carrinho.length === 0) {
+    itensCarrinho.innerHTML = '<p class="vazio">Nenhum produto adicionado ainda.</p>';
+    totalPedido.textContent = formatarMoeda(0);
+    return;
+  }
+  let total = 0;
+  carrinho.forEach(item => {
+    const subtotal = item.quantidade * item.preco;
+    total += subtotal;
+    const div = document.createElement("div");
+    div.className = "item-carrinho";
+    div.innerHTML = `<div><strong>${item.nome}</strong><br><small>${item.quantidade} kg x ${formatarMoeda(item.preco)}</small></div><div><strong>${formatarMoeda(subtotal)}</strong><br><button onclick="removerCarrinho(${item.id})">Remover</button></div>`;
+    itensCarrinho.appendChild(div);
+  });
+  totalPedido.textContent = formatarMoeda(total);
+}
+
+filtros.forEach(botao => {
+  botao.addEventListener("click", () => {
+    filtros.forEach(item => item.classList.remove("ativo"));
+    botao.classList.add("ativo");
+    renderizarProdutos(botao.dataset.categoria);
+  });
+});
+
+document.getElementById("formPedido").addEventListener("submit", event => {
+  event.preventDefault();
+  if (carrinho.length === 0) { alert("Adicione pelo menos um produto ao pedido."); return; }
+  const empresa = document.getElementById("empresa").value;
+  const responsavel = document.getElementById("responsavel").value;
+  const telefone = document.getElementById("telefone").value;
+  const dataEntrega = document.getElementById("dataEntrega").value;
+  const horaEntrega = document.getElementById("horaEntrega").value;
+  const endereco = document.getElementById("endereco").value;
+  const observacoes = document.getElementById("observacoes").value || "Sem observações";
+  const itens = carrinho.map(item => `- ${item.nome}: ${item.quantidade} kg | ${formatarMoeda(item.quantidade * item.preco)}`).join("%0A");
+  const total = carrinho.reduce((soma, item) => soma + item.quantidade * item.preco, 0);
+  const mensagem = `Olá! Gostaria de fazer um pedido:%0A%0A*Estabelecimento:* ${empresa}%0A*Responsável:* ${responsavel}%0A*Telefone:* ${telefone}%0A*Entrega:* ${dataEntrega} às ${horaEntrega}%0A*Endereço:* ${endereco}%0A%0A*Itens do pedido:*%0A${itens}%0A%0A*Total estimado:* ${formatarMoeda(total)}%0A*Observações:* ${observacoes}`;
+  window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank");
+});
+
+
+document.getElementById("formForaCatalogo").addEventListener("submit", event => {
+  event.preventDefault();
+  const empresa = document.getElementById("foraEmpresa").value;
+  const responsavel = document.getElementById("foraResponsavel").value;
+  const telefone = document.getElementById("foraTelefone").value;
+  const mensagemCliente = document.getElementById("foraMensagem").value;
+  const mensagem = `Olá! Gostaria de consultar a possibilidade de fornecimento de um item fora do catálogo:%0A%0A*Estabelecimento:* ${empresa}%0A*Responsável:* ${responsavel}%0A*Telefone:* ${telefone}%0A%0A*Solicitação:* ${mensagemCliente}%0A%0APoderiam verificar se a Oxenté consegue fornecer posteriormente?`;
+  window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank");
+});
+
+renderizarProdutos();
+renderizarCarrinho();
+
+</script>
+</body>
+</html>
